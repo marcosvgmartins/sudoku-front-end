@@ -1,0 +1,75 @@
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+body {
+    margin: 0px;
+}
+
+h1, h2 {
+    padding: 0px;
+    margin: 0px;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.header-element {
+    width: 90px;
+    height: 20px;
+    padding: 5px;
+    border-radius: 50px;
+    text-align: center;
+    background: #7b68ee47;
+}
+
+header {
+    margin-bottom: 1%;
+    background-color: rgb(248, 243, 187);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.avatar {
+    font-size: 2em;
+    color: Mediumslateblue;
+}
+
+.sudoku-area {
+    width: 100%;
+}
+
+.main-container {
+    width: 630px;
+    margin: auto;
+}
+
+.stats {
+    margin-bottom: 2%;
+}
+
+.sudoku {
+    border-spacing: 0px;
+    margin: auto;
+    clear: both;
+    height: 480px;
+    width: 100%;
+    border: 2px solid black;
+}
+
+.sudoku td {
+    border-right: 1px solid grey;
+    border-bottom: 1px solid grey;
+    text-align: center;
+    margin: 0%;
+}
+
+.sudoku td.right-boundary {
+    border-right: 2px solid black;
+}
+
+.sudoku td.bottom-boundary {
+    border-bottom: 2px solid black !important;
+}
