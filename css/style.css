@@ -5,6 +5,7 @@
 
 body {
     margin: 0px;
+    box-sizing: border-box;
 }
 
 h1, h2 {
@@ -53,6 +54,8 @@ header {
 
 .sudoku {
     border-spacing: 0px;
+    /*This allows table rows to have their borders styled: https://stackoverflow.com/a/10040881/9921703*/
+    border-collapse: collapse;
     margin: auto;
     clear: both;
     height: 480px;
@@ -75,10 +78,12 @@ header {
     background-color: rgba(147, 112, 216, 0.575);
 }
 
-.sudoku td.right-boundary {
+/* This rule makes the right border of subregions thicker */
+.sudoku td:nth-child(3n):nth-child(-n+6) {
     border-right: 2px solid black;
 }
 
-.sudoku td.bottom-boundary {
+/* This rule makes the bottom border of subregions thicker */
+.sudoku tr:nth-child(3n):nth-child(-n+6) {
     border-bottom: 2px solid black !important;
 }
