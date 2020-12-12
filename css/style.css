@@ -78,6 +78,14 @@ header {
     background-color: rgba(147, 112, 216, 0.575);
 }
 
+.active-cell {
+    background-color: rgba(147, 112, 216, 0.719);
+}
+
+.related-to-active-cell {
+    background-color: rgba(169, 145, 216, 0.377);
+}
+
 /* This rule makes the right border of subregions thicker */
 .sudoku td:nth-child(3n):nth-child(-n+6) {
     border-right: 2px solid black;
