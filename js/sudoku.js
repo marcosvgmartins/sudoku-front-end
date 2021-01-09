@@ -1,5 +1,45 @@
 var currentlySelected = null;
-const relatedToActiveCellClass = "related-to-active-cell"
+const relatedToActiveCellClass = "related-to-active-cell";
+
+let hours = `00`;
+let minutes = `00`;
+let seconds = `00`;
+let chronometerDisplay = $("#chronometer");
+let chronometerCall;
+
+function updateGameChronometer() {
+    // Inspired from https://codepen.io/vanessametonini/pen/GMWEBv
+    seconds++;
+
+    if (seconds < 10) {
+        seconds = "0" + seconds;
+    }
+
+    if (seconds > 59) {
+        seconds = "00";
+        minutes++;
+
+        if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+    }
+
+    if (minutes > 59) {
+        minutes = "00";
+        hours++;
+
+        if (hours < 10) {
+            hours = "0" + hours;
+        }
+    }
+
+    chronometerDisplay.html(`${hours}:${minutes}:${seconds}`);
+}
+
+// Adds the chronometer
+$(document).ready(function () {
+    chronometerCall = setInterval(updateGameChronometer, 1000);
+});
 
 function isValidSudokuInput(value) {
     return value >= '1' && value <= '9';
