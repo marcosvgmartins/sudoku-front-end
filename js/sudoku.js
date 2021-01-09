@@ -1,74 +1,45 @@
 var currentlySelected = null;
+const relatedToActiveCellClass = "related-to-active-cell"
 
 function isValidSudokuInput(value) {
     return value >= '1' && value <= '9';
 }
 
-/**
- * TODO
- *  1. Simplify highlight/deemphasize logic (use a single method and JQuery's "toggleClass")
- *  2. Improve variable names
- */
-
-function highlightRelatedCells() {
+function toggleRelatedCells() {
     selectedDomCell = currentlySelected[0];
-    var cellIndex = selectedDomCell.cellIndex;
-    var parentRow = selectedDomCell.parentElement;
-    var rowIndex = parentRow.rowIndex;
+    var selectedDomCellIndex = selectedDomCell.cellIndex;
+    var selectedCellParentRow = selectedDomCell.parentElement;
+    var parentRowIndex = selectedCellParentRow.rowIndex;
 
     /**
-     * Highlight everything on the same row
+     * Toggle everything on the same row
      */
-    $(parentRow).find("td").each(function() {
-        $(this).addClass("related-to-active-cell");
-    });
-
-    /**
-     * Highlight everything on the same column and on the same subregion
-     */
-    $("#sudoku-board tr").each(function() {
-
-        $(this.cells[cellIndex]).addClass("related-to-active-cell");
-
-        var currentRowSubRegion = Math.floor(this.rowIndex / 3);
-        var selectedCellRowSubRegion = Math.floor(rowIndex / 3);
-        if (currentRowSubRegion == selectedCellRowSubRegion) {
-            $(this).find("td").each(function() {
-                if (Math.floor(this.cellIndex / 3) == Math.floor(cellIndex / 3)) {
-                    $(this).addClass("related-to-active-cell");
-                }
-            });
-        }
-    });
-
-    currentlySelected.removeClass("related-to-active-cell");
-}
-
-function deemphasizeRelatedCells() {
-    selectedDomCell = currentlySelected[0];
-    var cellIndex = selectedDomCell.cellIndex;
-    var parentRow = selectedDomCell.parentElement;
-    var rowIndex = parentRow.rowIndex;
-
-    $(parentRow).find("td").each(function() {
-        if ($(this) != currentlySelected) {
-            $(this).removeClass("related-to-active-cell");
+    $(selectedCellParentRow).find("td").each(function() {
+        if (this.cellIndex != selectedDomCellIndex) {
+            $(this).toggleClass(relatedToActiveCellClass);
         }
     });
 
     /**
-     * Deemphasize everything on the same column
+     * Toggle everything on the same column and on the same subregion
      */
     $("#sudoku-board tr").each(function() {
 
-        $(this.cells[cellIndex]).removeClass("related-to-active-cell");
+        if (this.rowIndex == parentRowIndex) {
+            return;
+        }
 
+        // This will access the same column
+        $(this.cells[selectedDomCellIndex]).toggleClass(relatedToActiveCellClass);
+
+        // This will access the cells at the same subregion
         var currentRowSubRegion = Math.floor(this.rowIndex / 3);
-        var selectedCellRowSubRegion = Math.floor(rowIndex / 3);
+        var selectedCellRowSubRegion = Math.floor(parentRowIndex / 3);
         if (currentRowSubRegion == selectedCellRowSubRegion) {
             $(this).find("td").each(function() {
-                if (Math.floor(this.cellIndex / 3) == Math.floor(cellIndex / 3)) {
-                    $(this).removeClass("related-to-active-cell");
+                if (this.cellIndex != selectedDomCellIndex &&
+                    Math.floor(this.cellIndex / 3) == Math.floor(selectedDomCellIndex / 3)) {
+                    $(this).toggleClass(relatedToActiveCellClass);
                 }
             });
         }
@@ -80,13 +51,13 @@ function deemphasizeRelatedCells() {
  */
 $("td").click(function() {
     if (currentlySelected != null) {
-        deemphasizeRelatedCells();
+        toggleRelatedCells();
         currentlySelected.removeClass("active-cell");
     }
 
     currentlySelected = $(this);
     currentlySelected.addClass("active-cell");
-    highlightRelatedCells();
+    toggleRelatedCells();
 });
 
 /**
