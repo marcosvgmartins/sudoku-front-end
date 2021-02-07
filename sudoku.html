@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <title>This is Sudoku!</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.1/css/all.css">
-  </head>
-  <body>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
 
     <header class="flex space-between">
         <h1>QGames</h1>
@@ -16,12 +21,12 @@
 
     <section class="sudoku-area">
 
-        <div class="flex space-between main-container stats">
+        <div class="flex space-between stats">
             <div id="chronometer" class="timer header-element">00:00:00</div>
             <div class="score header-element">21/30</div>
         </div>
 
-        <div class="main-container">
+        <div>
             <table id="sudoku-board" class="sudoku">
                 <tbody>
                     <tr>
@@ -130,5 +135,6 @@
 
     <script src="js/jquery-3.5.1.js"></script>
     <script src="js/sudoku.js"></script>
-  </body>
+</body>
+
 </html>
