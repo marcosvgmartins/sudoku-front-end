@@ -41,6 +41,10 @@ $(document).ready(function () {
     chronometerCall = setInterval(updateGameChronometer, 1000);
 });
 
+function isDeleteKey(key) {
+    return key === 'Delete' || key === 'Backspace';
+}
+
 function isValidSudokuInput(value) {
     return value >= '1' && value <= '9';
 }
@@ -112,11 +116,16 @@ $('td').click(function () {
  * Reads the input from the keyboard and sets the value at
  * the cell that is currently selected
  */
-document.addEventListener('keypress', function onPress(event) {
-    if (currentlySelected != null) {
-        if (isValidSudokuInput(event.key)) {
-            currentlySelected.html(event.key);
-        }
+document.addEventListener('keydown', function (event) {
+    if (currentlySelected == null) {
+        return true;
+    }
+
+    const key = event.key;
+    if (isDeleteKey(key)) {
+        return currentlySelected.html('');
+    } else if (isValidSudokuInput(key)) {
+        currentlySelected.html(key);
     }
 });
 
