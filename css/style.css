@@ -69,9 +69,13 @@ header {
     margin: auto;
 
     width: 100%;
-    height: min(90vw, 580px);
+    height: min(90vh, 580px);
 
     font-size: 1.5rem;
+}
+
+.sudoku tr {
+    height: 11.1%;
 }
 
 .sudoku td {
@@ -79,6 +83,8 @@ header {
     border-bottom: 1px solid grey;
     text-align: center;
     margin: 0%;
+
+    width: 11.1%;
 }
 
 .sudoku td:hover {
