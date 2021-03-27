@@ -1,0 +1,16 @@
+:root {
+    --color-green: #27db30bd;
+    --color-grey: #aeb4bd9c;
+    --color-strong-purple: mediumpurple;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background: var(--color-grey);
+    font-family: 'Inconsolata', monospace, sans-serif;
+}

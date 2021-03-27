@@ -1,17 +1,4 @@
-:root {
-    --color-green: #27db30bd;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    background: #aeb4bd9c;
-    font-family: 'Inconsolata', monospace, sans-serif;
-}
+@import url('global.css');
 
 .flex {
     display: flex;
@@ -88,7 +75,7 @@ header {
 }
 
 .sudoku td:hover {
-    background-color: mediumpurple;
+    background-color: var(--strong-purple);
 }
 
 .sudoku td:active {
